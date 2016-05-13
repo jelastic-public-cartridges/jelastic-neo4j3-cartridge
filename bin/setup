@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+. /etc/jelastic/environment
+
+set -u
+
+for dir in tmp pid cache dbs env; do
+	mkdir -p $dir
+done
+
+ln -sfT $CARTRIDGE_HOME/versions/${Version}/neo4j-${Version}/logs $CARTRIDGE_HOME/logs; chown jelastic:jelastic $CARTRIDGE_HOME/logs;
+
+JAVA_COMMON_PATH="/usr/java"
+JAVA8_DIR=`ls $JAVA_COMMON_PATH | grep jdk1.8 | head -n 1`
+JAVA_LATEST_DIR="/usr/java/latest"
+JAVA_DEFAULT_DIR="/usr/java/default"
+
+[ -L $JAVA_LATEST_DIR ] && rm $JAVA_LATEST_DIR;
+[ ! -z $JAVA8_DIR ] && ln -s $JAVA8_DIR $JAVA_LATEST_DIR;
+[ -L $JAVA_DEFAULT_DIR ] && rm $JAVA_DEFAULT_DIR;
+[ ! -z $JAVA8_DIR ] && ln -s $JAVA_LATEST_DIR $JAVA_DEFAULT_DIR;
+
+echo $(pwd)/versions/${Version}/neo4j-${Version}/bin > env/OPENSHIFT_RUBY_PATH_ELEMENT
