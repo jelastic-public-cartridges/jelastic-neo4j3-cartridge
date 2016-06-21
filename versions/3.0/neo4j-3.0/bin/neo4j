@@ -24,7 +24,8 @@
 #  * NEO4J_CONF
 #  * NEO4J_START_WAIT
 
-set -euo pipefail
+. /etc/jelastic/environment
+
 [[ "${TRACE:-}" ]] && set -x
 
 : "${NEO4J_BIN:=$(dirname "$0")}"
@@ -85,11 +86,9 @@ check_limits() {
 }
 
 setup_java_opts() {
-  JAVA_OPTS=("-server")
 
-  [[ -n "${dbms_memory_heap_initial_size:-}" ]] && JAVA_MEMORY_OPTS+=("-Xms${dbms_memory_heap_initial_size}m")
-  [[ -n "${dbms_memory_heap_max_size:-}" ]] && JAVA_MEMORY_OPTS+=("-Xmx${dbms_memory_heap_max_size}m")
-  [[ -n "${JAVA_MEMORY_OPTS:-}" ]] && JAVA_OPTS+=("${JAVA_MEMORY_OPTS[@]}")
+  . ${OPENSHIFT_NEO4J_DIR}/versions/${Version}/neo4j-${Version}/bin/variablesparser.sh
+  JAVA_OPTS+=("-server")
 
   if [[ "${dbms_logs_gc_enabled:-}" = "true" ]]; then
     JAVA_OPTS+=("-Xloggc:${NEO4J_LOGS}/gc.log" \
@@ -110,7 +109,7 @@ setup_java_opts() {
 }
 
 assemble_command_line() {
-  retval=("${JAVA_CMD}" "-cp" "${CLASSPATH}" "${JAVA_OPTS[@]}" "-Dfile.encoding=UTF-8" "${MAIN_CLASS}" \
+  retval=("${JAVA_CMD}" "-cp" "${CLASSPATH}" ${JAVA_OPTS[@]} "-Dfile.encoding=UTF-8" "${MAIN_CLASS}" \
           "--config-dir=${NEO4J_CONF}")
 }
 
@@ -253,3 +252,4 @@ main() {
 }
 
 main "$@"
+
