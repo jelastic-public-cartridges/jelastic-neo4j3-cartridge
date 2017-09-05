@@ -8,7 +8,7 @@ License-Url:
 Vendor: Shekhar Gulati
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: neo4j
-Source-Url: https://github.com/SiryjVyiko/jelastic-neo4j3-cartridge.git
+Source-Url: https://github.com/jelastic-public-cartridges/jelastic-neo4j3-cartridge.git
 Categories:
   - service
   - database
