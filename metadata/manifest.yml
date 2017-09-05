@@ -2,13 +2,13 @@ Name: neo4j
 Cartridge-Short-Name: NEO4J
 Display-Name: NEO4J
 Description: "Neo4j is an open-source, high-performance, enterprise-grade NOSQL graph database."
-Version: '3.0'
+Version: '3.2'
 License: GNU GENERAL PUBLIC LICENSE
 License-Url: 
 Vendor: Shekhar Gulati
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: neo4j
-Source-Url: https://github.com/jelastic-public-cartridges/jelastic-neo4j3-cartridge.git
+Source-Url: https://github.com/SiryjVyiko/jelastic-neo4j3-cartridge.git
 Categories:
   - service
   - database
@@ -42,15 +42,15 @@ Cart-Data:
     Type: environment
     Description: "Unique ID which identified the gear. This value changes between gears."
 Provides:
-  - neo4j-3.0
+  - neo4j-3.2
   - "neo4j"
 Scaling:
-  Min: 1
-  Max: 1
+  Min: 6
+  Max: 16
 Endpoints:
   - Private-IP-Name:   DB_HOST_WEB_HTTP
     Private-Port-Name: DB_PORT_WEB_HTTPS
-    Private-Port:      8743
+    Private-Port:      7473
   - Private-IP-Name:   DB_HOST_WEB
     Private-Port-Name: DB_PORT_WEB
     Private-Port:      8080
@@ -60,6 +60,9 @@ Endpoints:
   - Private-IP-Name:   DB_HOST_BOLT_CONNECTOR
     Private-Port-Name: DB_PORT_BOLT_CONNECTOR
     Private-Port:      7687
+  - Private-IP-Name:   DB_HOST_BOLT_CONNECTOR2
+    Private-Port-Name: DB_PORT_BOLT_CONNECTOR2
+    Private-Port:      4848
 Publishes:
   publish-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
