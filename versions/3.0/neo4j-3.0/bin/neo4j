@@ -53,7 +53,7 @@ setup_arbiter_options() {
     MAIN_CLASS="org.neo4j.server.CommunityEntryPoint"
 
     print_start_message() {
-      port="${org_neo4j_server_webserver_port:-8080}"
+      port="${org_neo4j_server_webserver_port:-80}"
       NEO4J_SERVER_ADDRESS="${org_neo4j_server_webserver_address:-0.0.0.0}"
 
       echo "Started neo4j (pid ${NEO4J_PID}). By default, it is available at http://${NEO4J_SERVER_ADDRESS}:${port}/"

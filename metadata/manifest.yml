@@ -53,7 +53,7 @@ Endpoints:
     Private-Port:      7473
   - Private-IP-Name:   DB_HOST_WEB
     Private-Port-Name: DB_PORT_WEB
-    Private-Port:      8080
+    Private-Port:      80
   - Private-IP-Name:   DB_SHELL_HOST
     Private-Port-Name: DB_SHELL_PORT
     Private-Port:      1337

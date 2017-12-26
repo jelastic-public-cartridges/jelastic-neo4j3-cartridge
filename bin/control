@@ -40,7 +40,7 @@ function start() {
 
     	retries=60
         while [ $retries -gt 0 ]; do
-                [ -n "$(netstat -nlpt 2>/dev/null | grep 8080)" ] && break
+                [ -n "$(netstat -nlpt 2>/dev/null | grep 80)" ] && break
                 sleep 1
         let retries=${retries}-1
         done
