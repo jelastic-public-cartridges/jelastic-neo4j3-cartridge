@@ -63,6 +63,10 @@ Endpoints:
   - Private-IP-Name:   DB_HOST_BOLT_CONNECTOR2
     Private-Port-Name: DB_PORT_BOLT_CONNECTOR2
     Private-Port:      4848
+  - Private-IP-Name:   EXIM_IP
+    Private-Port-Name: EXIM_PORT
+    Private-Port:      7979
+    Public-Port-Name:  EXIM_PROXY_PORT
 Publishes:
   publish-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
